@@ -3,26 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoio ao Idoso</title>
+    <title>Portal de Apoio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* Variáveis de cores (Modo Claro padrão) */
+        :root {
+            --bg-color: #fdf0f5;
+            --card-bg: #ffffff;
+            --text-color: #2d0036;
+            --header-bg: #6b2d5c;
+            --header-text: #ffffff;
+            --primary-purple: #8b3a75;
+            --accent-pink: #d81b60;
+            --border-color: #f48fb1;
+            --btn-bg: #d81b60;
+            --btn-text: #ffffff;
+            --font-size-base: 20px;
+        }
+
+        /* Variáveis para o Modo Escuro */
+        [data-theme="dark"] {
+            --bg-color: #1a0917;
+            --card-bg: #2a1226;
+            --text-color: #fce4ec;
+            --header-bg: #3d1435;
+            --header-text: #fce4ec;
+            --primary-purple: #ce93d8;
+            --accent-pink: #ff4081;
+            --border-color: #ab47bc;
+            --btn-bg: #ab47bc;
+            --btn-text: #ffffff;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            font-size: 22px;
+            font-family: 'Lexend', Arial, sans-serif;
+            font-size: var(--font-size-base);
             line-height: 1.6;
-            background-color: #eef7f6; /* Fundo suave em tom verde-água */
-            color: #0c2340; /* Texto azul bem escuro para facilitar a leitura */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             padding: 20px;
             max-width: 800px;
             margin: auto;
+            transition: all 0.3s ease;
         }
         
+        /* Barra de Acessibilidade (Botões superiores) */
+        .accessibility-bar {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .access-btn {
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 16px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s;
+        }
+
+        .access-btn:hover {
+            transform: scale(1.05);
+        }
+
         header {
-            background-color: #005f73; /* Azul escuro no cabeçalho */
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 25px 20px;
+            border-radius: 12px;
             text-align: center;
             margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 8px solid var(--accent-pink);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: var(--primary-purple);
+            margin-top: 0;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .action-btn {
+            display: inline-block;
+            font-size: 1em;
+            font-weight: 600;
+            padding: 12px 24px;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="accessibility-bar">
+        <button class="access-btn" onclick="alterarTamanhoFonte(2)">A+ Aumentar Letra</button>
+        <button class="access-btn" onclick="alterarTamanhoFonte(-2)">A- Diminuir Letra</button>
+        <button class="access-btn" onclick="alternarModo()">🌓 Modo Claro/Escuro</button>
+    </div>
+
+    <header>
+        <h1>Portal de Apoio ao Idoso</h1>
+    </header>
+    
+    <div class="card">
+        <h2>Como usar o WhatsApp?</h2>
+        <p>Aprenda a mandar mensagens de texto e áudio para a sua família de forma simples.</p>
+        <a href="#" class="action-btn">Ver Tutorial</a>
+    </div>
+
+    <div class="card">
+        <h2>Telefones Úteis</h2>
+        <p><strong>SAMU:</strong> 192</p>
+        <p><strong>Disque Direitos Humanos:</strong> 100</p>
+    </div>
+
+    <script>
+        let tamanhoAtual = 20;
+
+        function alterarTamanhoFonte(delta) {
+            tamanhoAtual += delta;
+            // Limites para não quebrar a tela (Mínimo 16px, Máximo 32px)
+            if (tamanhoAtual < 16) tamanhoAtual = 16;
+            if (tamanhoAtual > 32) tamanhoAtual = 32;
+            
+            document.documentElement.style.setProperty('--font-size-base', tamanhoAtual + 'px');
+        }
+
+        function alternarModo() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
+
+</body>
+</html>
