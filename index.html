@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Apoio</title>
+    <title>Portal de Apoio ao Idoso</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
@@ -47,10 +47,10 @@
             padding: 20px;
             max-width: 800px;
             margin: auto;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s, color 0.3s;
         }
         
-        /* Barra de Acessibilidade (Botões superiores) */
+        /* Barra de Acessibilidade */
         .accessibility-bar {
             display: flex;
             gap: 10px;
@@ -63,7 +63,7 @@
             font-family: inherit;
             font-size: 16px;
             font-weight: 600;
-            padding: 8px 16px;
+            padding: 10px 18px;
             background-color: var(--card-bg);
             color: var(--text-color);
             border: 2px solid var(--border-color);
@@ -72,8 +72,9 @@
             transition: transform 0.2s ease, background-color 0.3s;
         }
 
-        .access-btn:hover {
+        .access-btn:hover, .access-btn:focus {
             transform: scale(1.05);
+            outline: 2px solid var(--accent-pink);
         }
 
         header {
@@ -96,10 +97,8 @@
             background: var(--card-bg);
             padding: 24px;
             border-radius: 12px;
+            border: 1px solid var(--border-color);
             border-left: 8px solid var(--accent-pink);
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
@@ -109,6 +108,15 @@
             margin-top: 0;
             font-size: 1.4em;
             font-weight: 600;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
         }
 
         .action-btn {
@@ -127,50 +135,117 @@
         .action-btn:hover {
             opacity: 0.9;
         }
+
+        .phone-link {
+            color: var(--accent-pink);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .tip-box {
+            background-color: rgba(216, 27, 96, 0.08);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="accessibility-bar">
-        <button class="access-btn" onclick="alterarTamanhoFonte(2)">A+ Aumentar Letra</button>
-        <button class="access-btn" onclick="alterarTamanhoFonte(-2)">A- Diminuir Letra</button>
-        <button class="access-btn" onclick="alternarModo()">🌓 Modo Claro/Escuro</button>
-    </div>
+    <nav class="accessibility-bar" aria-label="Controles de acessibilidade">
+        <button class="access-btn" onclick="alterarTamanhoFonte(2)" aria-label="Aumentar tamanho do texto">A+ Aumentar Letra</button>
+        <button class="access-btn" onclick="alterarTamanhoFonte(-2)" aria-label="Diminuir tamanho do texto">A- Diminuir Letra</button>
+        <button class="access-btn" onclick="alternarModo()" aria-label="Alternar entre modo claro e escuro">🌓 Modo Claro/Escuro</button>
+    </nav>
 
     <header>
         <h1>Portal de Apoio ao Idoso</h1>
     </header>
     
-    <div class="card">
-        <h2>Como usar o WhatsApp?</h2>
-        <p>Aprenda a mandar mensagens de texto e áudio para a sua família de forma simples.</p>
-        <a href="#" class="action-btn">Ver Tutorial</a>
-    </div>
+    <main>
+        <!-- Notícia / Alerta de Segurança -->
+        <div class="card">
+            <h2>🛡️ Cuidado com Golpes por Telefone e Mensagem</h2>
+            <p>Se receber mensagens pedindo dinheiro ou senhas, <strong>não responda imediatamente</strong>. Ligue para um familiar antes de fazer qualquer transferência.</p>
+            <div class="tip-box">
+                <strong>Dica importante:</strong> Banco ou polícia não pedem senhas pelo WhatsApp nem mandam motoboy retirar cartão na sua casa.
+            </div>
+        </div>
 
-    <div class="card">
-        <h2>Telefones Úteis</h2>
-        <p><strong>SAMU:</strong> 192</p>
-        <p><strong>Disque Direitos Humanos:</strong> 100</p>
-    </div>
+        <!-- Tutoriais Digitais -->
+        <div class="card">
+            <h2>📱 Tutoriais de Tecnologia</h2>
+            <ul>
+                <li>Como enviar foto e mensagem de áudio no WhatsApp</li>
+                <li>Como chamar um carro por aplicativo (Uber/99)</li>
+                <li>Como agendar consultas no posto de saúde online</li>
+            </ul>
+            <a href="#" class="action-btn">Acessar Guia Passo a Passo</a>
+        </div>
+
+        <!-- Saúde e Organização -->
+        <div class="card">
+            <h2>💊 Saúde e Bem-Estar</h2>
+            <p>Organizar a rotina ajuda a não esquecer os compromissos diários:</p>
+            <ul>
+                <li><strong>Medicamentos:</strong> Mantenha uma lista com horários e nomes dos remédios perto do copo de água.</li>
+                <li><strong>Exercícios leves:</strong> Caminhadas diárias de 20 minutos ajudam nas articulações e na circulação.</li>
+            </ul>
+        </div>
+
+        <!-- Direitos do Idoso -->
+        <div class="card">
+            <h2>📜 Direitos da Pessoa Idosa</h2>
+            <p>Conheça os benefícios garantidos pelo Estatuto do Idoso:</p>
+            <ul>
+                <li>Prioridade em filas de atendimento e assentos no transporte público.</li>
+                <li>Gratuidade ou desconto em viagens intermunicipais e interestaduais.</li>
+                <li>Isenção de IPTU para aposentados (consulte as regras da sua cidade).</li>
+            </ul>
+        </div>
+
+        <!-- Telefones Úteis -->
+        <div class="card">
+            <h2>📞 Telefones Úteis de Emergência</h2>
+            <p><strong>SAMU (Ambulância):</strong> <a href="tel:192" class="phone-link">192</a></p>
+            <p><strong>Bombeiros:</strong> <a href="tel:193" class="phone-link">193</a></p>
+            <p><strong>Polícia Militar:</strong> <a href="tel:190" class="phone-link">190</a></p>
+            <p><strong>Disque Direitos Humanos:</strong> <a href="tel:100" class="phone-link">100</a></p>
+        </div>
+    </main>
 
     <script>
-        let tamanhoAtual = 20;
+        let tamanhoAtual = parseInt(localStorage.getItem('tamanhoFonte')) || 20;
+        let temaAtual = localStorage.getItem('tema') || 'light';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            aplicarFonte(tamanhoAtual);
+            if (temaAtual === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+        });
+
+        function aplicarFonte(tamanho) {
+            document.documentElement.style.setProperty('--font-size-base', tamanho + 'px');
+        }
 
         function alterarTamanhoFonte(delta) {
             tamanhoAtual += delta;
-            // Limites para não quebrar a tela (Mínimo 16px, Máximo 32px)
             if (tamanhoAtual < 16) tamanhoAtual = 16;
             if (tamanhoAtual > 32) tamanhoAtual = 32;
             
-            document.documentElement.style.setProperty('--font-size-base', tamanhoAtual + 'px');
+            aplicarFonte(tamanhoAtual);
+            localStorage.setItem('tamanhoFonte', tamanhoAtual);
         }
 
         function alternarModo() {
             const body = document.body;
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
+                localStorage.setItem('tema', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('tema', 'dark');
             }
         }
     </script>
