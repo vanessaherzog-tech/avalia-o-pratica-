@@ -130,6 +130,8 @@
             border-radius: 8px;
             margin-top: 10px;
             transition: opacity 0.2s;
+            border: none;
+            cursor: pointer;
         }
 
         .action-btn:hover {
@@ -148,6 +150,62 @@
             border-radius: 8px;
             margin-top: 10px;
         }
+
+        /* Tabela de Remédios */
+        .med-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .med-table th, .med-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .med-table th {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+        }
+
+        /* Formulários e Calculadora */
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-sizing: border-box;
+        }
+
+        /* Botão de Emergência Destaque */
+        .emergency-card {
+            border-left-color: #d32f2f;
+            background-color: rgba(211, 47, 47, 0.05);
+        }
+
+        .emergency-btn {
+            background-color: #d32f2f;
+            color: #ffffff;
+            font-size: 1.1em;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -156,6 +214,7 @@
         <button class="access-btn" onclick="alterarTamanhoFonte(2)" aria-label="Aumentar tamanho do texto">A+ Aumentar Letra</button>
         <button class="access-btn" onclick="alterarTamanhoFonte(-2)" aria-label="Diminuir tamanho do texto">A- Diminuir Letra</button>
         <button class="access-btn" onclick="alternarModo()" aria-label="Alternar entre modo claro e escuro">🌓 Modo Claro/Escuro</button>
+        <button class="access-btn" onclick="lerTexto()" aria-label="Ouvir leitura da página">🔊 Ler Conteúdo</button>
     </nav>
 
     <header>
@@ -163,7 +222,73 @@
     </header>
     
     <main>
-        <!-- Notícia / Alerta de Segurança -->
+        <!-- Chamada de Emergência Rápida -->
+        <div class="card emergency-card">
+            <h2>🚨 Emergência Médica</h2>
+            <p>Precisa de socorro imediato? Clique no botão abaixo para ligar direto para o SAMU:</p>
+            <a href="tel:192" class="action-btn emergency-btn">LIGAR PARA O SAMU (192)</a>
+        </div>
+
+        <!-- Calculadora de Troco -->
+        <div class="card">
+            <h2>🧮 Ajuda com as Compras (Calculadora de Troco)</h2>
+            <p>Use este espaço no mercado ou farmácia para saber quanto troco deve receber:</p>
+            <div class="input-group">
+                <label for="valorTotal">Valor total das compras (R$):</label>
+                <input type="number" id="valorTotal" class="input-field" placeholder="Ex: 25.50" step="0.01">
+            </div>
+            <div class="input-group">
+                <label for="valorPago">Quanto dinheiro você entregou ao caixa (R$):</label>
+                <input type="number" id="valorPago" class="input-field" placeholder="Ex: 50.00" step="0.01">
+            </div>
+            <button onclick="calcularTroco()" class="action-btn">Calcular Troco</button>
+            <div id="resultadoTroco" class="tip-box" style="display:none; margin-top:15px;"></div>
+        </div>
+
+        <!-- Tabela de Remédios -->
+        <div class="card">
+            <h2>💊 Tabela Prática de Medicamentos</h2>
+            <p>Exemplo de organização diária dos remédios. Você pode imprimir ou anotar no seu bloco:</p>
+            <table class="med-table">
+                <thead>
+                    <tr>
+                        <th>Remédio</th>
+                        <th>Horário</th>
+                        <th>Observação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pressão Alta</td>
+                        <td>08:00</td>
+                        <td>Tomar em jejum com água</td>
+                    </tr>
+                    <tr>
+                        <td>Diabetes</td>
+                        <td>12:00</td>
+                        <td>Após o almoço</td>
+                    </tr>
+                    <tr>
+                        <td>Vitamina</td>
+                        <td>18:00</td>
+                        <td>Junto com o jantar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Prevenção de Quedas -->
+        <div class="card">
+            <h2>🏠 Dicas para uma Casa Segura (Evite Quedas)</h2>
+            <ul>
+                <li><strong>Iluminação:</strong> Deixe uma luz acesa ou uma luminária no caminho até o banheiro durante a noite.</li>
+                <li><strong>Tapetes:</strong> Evite tapetes soltos. Prefira os que possuem borracha antiderrapante por baixo.</li>
+                <li><strong>Banheiro:</strong> Instale barras de apoio ao lado do vaso sanitário e dentro do box do chuveiro.</li>
+                <li><strong>Calçados:</strong> Use sapatos firmes nos pés com solado de borracha. Evite chinelos velhos e derrapantes.</li>
+            </ul>
+        </div>
+
+        <!-- Alerta de Segurança -->
         <div class="card">
             <h2>🛡️ Cuidado com Golpes por Telefone e Mensagem</h2>
             <p>Se receber mensagens pedindo dinheiro ou senhas, <strong>não responda imediatamente</strong>. Ligue para um familiar antes de fazer qualquer transferência.</p>
@@ -183,20 +308,9 @@
             <a href="#" class="action-btn">Acessar Guia Passo a Passo</a>
         </div>
 
-        <!-- Saúde e Organização -->
-        <div class="card">
-            <h2>💊 Saúde e Bem-Estar</h2>
-            <p>Organizar a rotina ajuda a não esquecer os compromissos diários:</p>
-            <ul>
-                <li><strong>Medicamentos:</strong> Mantenha uma lista com horários e nomes dos remédios perto do copo de água.</li>
-                <li><strong>Exercícios leves:</strong> Caminhadas diárias de 20 minutos ajudam nas articulações e na circulação.</li>
-            </ul>
-        </div>
-
         <!-- Direitos do Idoso -->
         <div class="card">
             <h2>📜 Direitos da Pessoa Idosa</h2>
-            <p>Conheça os benefícios garantidos pelo Estatuto do Idoso:</p>
             <ul>
                 <li>Prioridade em filas de atendimento e assentos no transporte público.</li>
                 <li>Gratuidade ou desconto em viagens intermunicipais e interestaduais.</li>
@@ -246,6 +360,43 @@
             } else {
                 body.setAttribute('data-theme', 'dark');
                 localStorage.setItem('tema', 'dark');
+            }
+        }
+
+        /* Lógica da Calculadora de Troco */
+        function calcularTroco() {
+            const total = parseFloat(document.getElementById('valorTotal').value);
+            const pago = parseFloat(document.getElementById('valorPago').value);
+            const resultado = document.getElementById('resultadoTroco');
+
+            if (isNaN(total) || isNaN(pago)) {
+                resultado.style.display = 'block';
+                resultado.innerHTML = '<strong>Atenção:</strong> Por favor, digite os dois valores para calcular.';
+                return;
+            }
+
+            if (pago < total) {
+                const falta = (total - pago).toFixed(2);
+                resultado.style.display = 'block';
+                resultado.innerHTML = `<strong>Atenção:</strong> O dinheiro entregue não é suficiente. Faltam <strong>R$ ${falta}</strong>.`;
+            } else {
+                const troco = (pago - total).toFixed(2);
+                resultado.style.display = 'block';
+                resultado.innerHTML = `<strong>Seu troco deve ser: R$ ${troco}</strong>`;
+            }
+        }
+
+        /* Leitura de Texto por Voz */
+        function lerTexto() {
+            if ('speechSynthesis' in window) {
+                const texto = document.querySelector('main').innerText;
+                window.speechSynthesis.cancel(); // Cancela falas anteriores
+                const fala = new SpeechSynthesisUtterance(texto);
+                fala.lang = 'pt-BR';
+                fala.rate = 0.9; // Leitura um pouco mais lenta para facilitar o entendimento
+                window.speechSynthesis.speak(fala);
+            } else {
+                alert('O seu navegador não suporta leitura de áudio automática.');
             }
         }
     </script>
